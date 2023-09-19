@@ -69,8 +69,7 @@ export class Game {
                 if (!collision) {
                     player.y = Math.max(0, player.y - playerSize.height)
                     return true
-                }
-                else{
+                } else {
                     return false
                 }
             },
@@ -84,8 +83,7 @@ export class Game {
                 if (!collision) {
                     player.y = Math.min(screenSize.height - playerSize.height, player.y + playerSize.height)
                     return true
-                }
-                else{
+                } else {
                     return false
                 }
             },
@@ -99,8 +97,7 @@ export class Game {
                 if (!collision) {
                     player.x = Math.max(0, player.x - playerSize.width)
                     return true
-                }
-                else{
+                } else {
                     return false
                 }
             },
@@ -114,12 +111,23 @@ export class Game {
                 if (!collision) {
                     player.x = Math.min(screenSize.width - playerSize.width, player.x + playerSize.width)
                     return true
-                }
-                else{
+                } else {
                     return false
                 }
-            }
-        }
+            },
+            w() {
+                return pressedKeyFunctions.ArrowUp();
+            },
+            s() {
+                return pressedKeyFunctions.ArrowDown();
+            },
+            a() {
+                return pressedKeyFunctions.ArrowLeft();
+            },
+            d() {
+                return pressedKeyFunctions.ArrowRight();
+            },
+        };
 
         const state = this.state
         const playerId = command.playerId

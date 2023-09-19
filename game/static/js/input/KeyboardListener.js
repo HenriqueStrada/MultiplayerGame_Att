@@ -30,7 +30,6 @@ export class KeyboardListener {
                 playerId: this.state.playerId,
                 keyPressed
             }
-
             this.notifyAll(command)
             setTimeout(() =>{
                 this.state.clicked = false
