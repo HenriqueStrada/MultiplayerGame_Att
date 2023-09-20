@@ -128,6 +128,13 @@ export class Game {
                 return pressedKeyFunctions.ArrowRight();
             },
         };
+// Função que será executada a cada 1 segundo
+        function minhaFuncao() {
+            console.log("Executando a cada 1 segundo.");
+        }
+
+// Define o intervalo de 1 segundo (1000 milissegundos)
+
 
         const state = this.state
         const playerId = command.playerId
