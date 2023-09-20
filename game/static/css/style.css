@@ -1,13 +1,29 @@
 * {
-    margin: 0;
-    padding: 0;
+    margin: 25px;
+    padding: 0
 }
 
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
     height: 100vh;
+    margin: 0;
+}
+
+#loginButton {
+    background-color: lightblue;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#loginButton:hover {
+    background-color: lightcyan;
 }
 
 #screen {
@@ -16,7 +32,7 @@ body {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
     image-rendering: -moz-crisp-edges;
-    width: 1536px;
+    width: 70%;
 }
 
 #buttons {
