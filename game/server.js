@@ -1,4 +1,3 @@
-// server.js ou app.js
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
@@ -17,6 +16,8 @@ const db = mysql.createConnection({
     host: "localhost", // Apenas o host, sem porta ou /mysql.
 });
 
+// Middleware para analisar requisições JSON
+app.use(express.json());
 
 app.use(express.static("static"))
 
@@ -56,7 +57,22 @@ sockets.on("connection", (socket) => {
 
 })
 
-
 server.listen(3000, () => {
     console.log("> Server listening on port: 3000")
 })
+
+app.post('/registrar', (req, res) => {
+    const userData = req.body; // Obtenha os dados do corpo da solicitação POST
+
+    // Execute a inserção no banco de dados usando os dados do usuário
+    db.query('INSERT INTO users (username, password) VALUES (?, ?)', [userData.username, userData.password], (err, results) => {
+        if (err) {
+            console.error('Erro ao inserir dados no banco de dados:', err);
+            res.status(500).json({ error: 'Erro ao registrar usuário' });
+            return;
+        }
+
+        console.log('Dados inseridos com sucesso:', results);
+        res.json({ success: 'Usuário registrado com sucesso' });
+    });
+});

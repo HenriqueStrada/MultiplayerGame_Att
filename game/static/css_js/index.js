@@ -32,12 +32,16 @@ openForgotLinks.forEach(link => {
         signUpForm.style.display = "none";
     });
 });
+///////////////////////////////
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const signupBtn = document.getElementById("signup-btn");
+        event.preventDefault();
 
     if (signupBtn) {
         signupBtn.addEventListener("click", function () {
+
             const username = document.querySelector(".singUp-form input[type='text']").value;
             const password = document.querySelector(".singUp-form input[type='password']").value;
             const confirmPassword = document.querySelector(".singUp-form input[name='confirmPassword']").value;
@@ -52,21 +56,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 password: password
             };
 
-            app.post("/registrar", (req, res) => {
-                const userData = req.body; // Obtenha os dados do corpo da solicitação POST
-
-                // Execute a inserção no banco de dados usando os dados do usuário
-                db.query('INSERT INTO users (username, password) VALUES (?, ?)', [userData.username, userData.password], (err, results) => {
-                    if (err) {
-                        console.error('Erro ao inserir dados no banco de dados:', err);
-                        res.status(500).json({ error: 'Erro ao registrar usuário' });
-                        return;
-                    }
-
-                    console.log('Dados inseridos com sucesso:', results);
-                    res.json({ success: 'Usuário registrado com sucesso' });
+            fetch('/registrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch((error) => {
+                    console.error('Error:', error);
                 });
-            });
 
         });
     }
