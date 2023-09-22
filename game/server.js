@@ -62,7 +62,7 @@ server.listen(3000, () => {
 })
 
 app.post('/registrar', (req, res) => {
-    const userData = req.body; // Obtenha os dados do corpo da solicitação POST
+    const userData = req.body; // Obtenha os dados do corpo da solicitação POST.
 
     // Execute a inserção no banco de dados usando os dados do usuário
     db.query('INSERT INTO users (username, password) VALUES (?, ?)', [userData.username, userData.password], (err, results) => {
