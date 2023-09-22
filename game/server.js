@@ -14,7 +14,7 @@ const db = mysql.createConnection({
     user: "root",
     password: "root",
     database: "users_game",
-    host: "localhost", // Apenas o host, sem porta ou /mysql
+    host: "localhost", // Apenas o host, sem porta ou /mysql.
 });
 
 
