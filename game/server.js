@@ -60,6 +60,39 @@ sockets.on("connection", (socket) => {
 server.listen(3000, () => {
     console.log("> Server listening on port: 3000")
 })
+app.post('/login', function (req, res) {
+    const loginData = req.body; // Obtenha os dados de login do corpo da solicitação POST
+
+    // Execute uma consulta SQL para encontrar o usuário com base no nome de usuário
+    db.query('SELECT * FROM users WHERE username = ?', [loginData.username], (err, results) => {
+        if (err) {
+            console.error('Erro ao consultar o banco de dados:', err);
+            res.status(500).json({ success: false, message: 'Erro no servidor' });
+            return;
+        }
+
+        // Verifique se um usuário com o nome de usuário fornecido foi encontrado
+        if (results.length === 1) {
+            const user = results[0];
+
+            // Verifique se a senha fornecida corresponde à senha no banco de dados
+            if (loginData.password === user.password) {
+                // Login bem-sucedido, envie uma resposta de sucesso
+                res.json({ success: true, message: 'Login bem-sucedido' });
+                alert("Login bem-sucedido");
+            } else {
+                // Senha incorreta, envie uma resposta de erro
+                res.status(401).json({ success: false, message: 'Senha incorreta' });
+                alert("Senha incorreto");
+            }
+        } else {
+            // Usuário não encontrado, envie uma resposta de erro
+            res.status(401).json({ success: false, message: 'Usuário não encontrado' });
+            alert("Usuario não encontrado");
+        }
+    });
+});
+
 
 app.post('/registrar', (req, res) => {
     const userData = req.body; // Obtenha os dados do corpo da solicitação POST.

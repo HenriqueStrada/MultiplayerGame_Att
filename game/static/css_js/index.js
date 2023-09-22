@@ -38,37 +38,74 @@ openForgotLinks.forEach(link => {
 document.addEventListener("DOMContentLoaded", function () {
     const signupBtn = document.getElementById("signup-btn");
         event.preventDefault();
+    document.addEventListener("DOMContentLoaded", function () {
+        const signupBtn = document.getElementById("signup-btn");
+        const loginBtn = document.getElementById("login-btn");
 
-    if (signupBtn) {
-        signupBtn.addEventListener("click", function () {
+        if (signupBtn) {
+            signupBtn.addEventListener("click", function () {
 
-            const username = document.querySelector(".singUp-form input[type='text']").value;
-            const password = document.querySelector(".singUp-form input[type='password']").value;
-            const confirmPassword = document.querySelector(".singUp-form input[name='confirmPassword']").value;
+                const username = document.querySelector(".singUp-form input[type='text']").value;
+                const password = document.querySelector(".singUp-form input[type='password']").value;
+                const confirmPassword = document.querySelector(".singUp-form input[name='confirmPassword']").value;
 
-            if (password !== confirmPassword) {
-                alert("As senhas não coincidem");
-                return;
-            }
+                if (password !== confirmPassword) {
+                    alert("As senhas não coincidem");
+                    return;
+                }
 
-            const userData = {
-                username: username,
-                password: password
-            };
+                const userData = {
+                    username: username,
+                    password: password
+                };
 
-            fetch('/registrar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData),
-            })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+                fetch('/registrar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData),
+                })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
 
-        });
-    }
+            });
+        }
+
+        if (loginBtn) {
+            loginBtn.addEventListener("click", function () {
+                const username = document.querySelector(".login-form input[type='text']").value;
+                const password = document.querySelector(".login-form input[type='password']").value;
+
+                const loginData = {
+                    username: username,
+                    password: password
+                };
+
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(loginData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Login bem-sucedido, redirecione ou exiba uma mensagem de sucesso
+                            console.log('Login bem-sucedido:', data.message);
+                        } else {
+                            // Login falhou, exiba uma mensagem de erro
+                            console.error('Login falhou:', data.message);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Erro:', error);
+                    });
+            });
+        }
+    });
 });
