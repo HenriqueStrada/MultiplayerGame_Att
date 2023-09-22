@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css_js/index.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
-
 <body>
-    <div class="wrapper">
-        <form action="">
+<div class="wrapper">
+    <form action="#">
+        <div class="login-form">
             <h1>Login</h1>
             <div class="input-box">
                 <input type="text" placeholder="Username" required>
@@ -23,16 +22,57 @@
             </div>
             <div class="remember-forgot">
                 <label><input type="checkbox"> Remember me</label>
-                <a href="#">Forgot password?</a>
+                <a href="#" class="open-forgot">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="register-link">
+                <p>Don't have an account? <a class="open-register" href="$">Register</a></p>
+            </div>
+        </div>
+    </form>
+
+    <form action="#">
+        <div class="singUp-form">
+            <h1>SignUp</h1>
+            <div class="input-box">
+                <input type="text" placeholder="Username" required>
+                <i class='bx bx-user-circle' ></i>
             </div>
 
-                <button type="submit" class="btn">Login</button>
-                <div class="register-link">
-                    <p>Don't have an account? <a href="#">Register</a></p>
-                </div>
+            <div class="input-box">
+                <input type="password" placeholder="Create Password" required>
+                <i class='bx bxs-lock' ></i>
+            </div>
 
-        </form>
-    </div>
-    <!--a href="game.html" class="meuBotao">Jogar</a>-->
+            <div class="input-box">
+                <input type="password" placeholder="Confirm Password" required>
+                <i class='bx bxs-lock' ></i>
+            </div>
+
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#" class="open-forgot">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn" id="signup-btn">SignUp</button>
+
+            <div class="register-link">
+                <p>Already have an account? <a class="open-login" href="#">Login</a></p>
+            </div>
+        </div>
+    </form>
+
+    <!-- Formulário de Esqueci a Senha -->
+    <form action="">
+        <div class="forgot-form">
+            <h1>Se fodeo meu nobre</h1>
+            <div class="register-link">
+                <p>Don't have an account? <a class="open-register" href="$">Register</a></p>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="css_js/index.js"></script>
+    <a href="game.html" class="meuBotao">Jogar</a>
 </body>
 </html>

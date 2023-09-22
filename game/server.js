@@ -1,11 +1,22 @@
-import express from "express"
-import http from "http"
-import { Server } from "socket.io"
+// server.js ou app.js
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import mysql from "mysql2";
 import { Game } from "./static/js/core/Game.js";
 
-const app = express()
-const server = http.createServer(app)
-const sockets = new Server(server)
+const app = express();
+const server = http.createServer(app);
+const sockets = new Server(server);
+
+// Configuração do banco de dados
+const db = mysql.createConnection({
+    user: "root",
+    password: "root",
+    database: "users_game",
+    host: "localhost", // Apenas o host, sem porta ou /mysql
+});
+
 
 app.use(express.static("static"))
 
